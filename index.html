@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webstore Development | High-Converting Online Stores</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:#fff;color:#1a1a2e;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
+.section-alt{background:#f8f9fb}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:20px;color:#0d0d1a}
+h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;margin-bottom:16px;color:#0d0d1a}
+h3{font-size:1.1rem;font-weight:700;margin-bottom:6px;color:#1a1a2e}
+p{color:#4a4a5a;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 28px;border-radius:8px;font-weight:600;font-size:1rem;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none}
+.btn-primary{background:#00a573;color:#fff;box-shadow:0 4px 14px rgba(0,165,115,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,165,115,.4)}
+.btn-secondary{background:#fff;color:#1a1a2e;border:2px solid #e0e0e5;margin-left:12px}
+.btn-secondary:hover{border-color:#00a573;color:#00a573}
+.btn-group{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.trust-badges{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px}
+.trust-badge{display:flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;color:#2d2d3a}
+.trust-badge svg{width:20px;height:20px;color:#00a573}
+.hero-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mock-card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 8px 32px rgba(0,0,0,.08);border:1px solid #eee}
+.mock-card-header{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #f0f0f0}
+.mock-dot{width:8px;height:8px;border-radius:50%}
+.mock-dot-r{background:#ff6b6b}
+.mock-dot-y{background:#ffd93d}
+.mock-dot-g{background:#6bcb77}
+.mock-screen{background:linear-gradient(135deg,#f8f9fb 0%,#e8f5f0 100%);border-radius:8px;padding:16px;min-height:120px}
+.mock-nav{display:flex;gap:8px;margin-bottom:12px}
+.mock-nav-item{height:6px;background:#ddd;border-radius:3px;flex:1}
+.mock-nav-item:first-child{background:#00a573;flex:0.8}
+.mock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mock-product{background:#fff;border-radius:6px;padding:8px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.mock-product-img{background:linear-gradient(135deg,#00a573 0%,#00c68a 100%);height:32px;border-radius:4px;margin-bottom:6px}
+.mock-product-line{height:4px;background:#e0e0e5;border-radius:2px;margin-bottom:4px}
+.mock-product-price{height:4px;background:#00a573;border-radius:2px;width:50%}
+.mock-mobile{grid-column:span 2}
+.mock-mobile .mock-screen{display:flex;gap:12px}
+.mock-mobile-nav{width:40px;display:flex;flex-direction:column;gap:8px}
+.mock-mobile-nav-item{height:28px;background:#e8f5f0;border-radius:4px}
+.mock-mobile-nav-item:first-child{background:#00a573}
+.mock-mobile-content{flex:1}
+.mock-app-icons{display:flex;gap:8px;margin-top:8px}
+.mock-app-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.mock-app-android{background:linear-gradient(135deg,#3ddc84 0%,#00a573 100%)}
+.mock-app-ios{background:linear-gradient(135deg,#555 0%,#1a1a2e 100%)}
+.service-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.service-col h2{margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #00a573}
+.service-item{display:flex;gap:16px;margin-bottom:24px}
+.service-icon{width:48px;height:48px;min-width:48px;background:linear-gradient(135deg,#e8f5f0 0%,#d0f0e4 100%);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.service-icon svg{width:24px;height:24px;color:#00a573}
+.service-content p{font-size:.95rem;color:#5a5a6a;margin-top:4px}
+.tracking-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.tracking-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,.06);border:1px solid #f0f0f0}
+.tracking-card h4{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:4px}
+.tracking-card p{font-size:.9rem;color:#6a6a7a}
+.google-list{display:flex;flex-direction:column;gap:16px}
+.google-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#f8f9fb;border-radius:10px;border-left:3px solid #00a573}
+.google-item span{font-weight:600;color:#2d2d3a}
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.payment-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #f0f0f0}
+.payment-item:last-child{border-bottom:none}
+.payment-icon{width:40px;height:40px;min-width:40px;background:#f8f9fb;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.payment-icon svg{width:20px;height:20px;color:#00a573}
+.payment-item span{font-weight:600;color:#2d2d3a}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.why-list{display:flex;flex-direction:column;gap:16px}
+.why-item{display:flex;align-items:flex-start;gap:12px;padding:16px;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.04)}
+.why-check{width:24px;height:24px;min-width:24px;background:#00a573;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.why-check svg{width:14px;height:14px;color:#fff}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.metric-card{background:linear-gradient(135deg,#00a573 0%,#00c68a 100%);border-radius:16px;padding:24px;color:#fff;text-align:center}
+.metric-card h4{font-size:1.1rem;font-weight:700;margin-bottom:4px}
+.metric-card p{font-size:.9rem;opacity:.9}
+.tech-badges{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.tech-badge{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:#fff;border-radius:50px;font-weight:600;font-size:.95rem;color:#2d2d3a;box-shadow:0 4px 16px rgba(0,0,0,.06);border:1px solid #f0f0f0}
+.process-flow{display:flex;gap:16px;overflow-x:auto;padding:8px 0}
+.process-step{flex:1;min-width:160px;text-align:center;padding:24px 16px;background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);position:relative}
+.process-num{width:36px;height:36px;background:#00a573;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 12px}
+.process-step h4{font-size:.95rem;font-weight:700;color:#1a1a2e}
+.cta-box{background:linear-gradient(135deg,#0d0d1a 0%,#1a1a2e 100%);border-radius:24px;padding:48px;color:#fff}
+.cta-box h2{color:#fff;margin-bottom:12px}
+.cta-box p{color:rgba(255,255,255,.8);margin-bottom:24px}
+.cta-box .btn-primary{background:#00a573}
+.cta-box .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.cta-box .btn-secondary:hover{border-color:#00a573;color:#00a573}
+.text-center{text-align:center}
+.mb-48{margin-bottom:48px}
+@media(max-width:900px){
+.split,.service-grid,.payment-grid,.why-grid{grid-template-columns:1fr;gap:32px}
+.hero-visual{grid-template-columns:1fr 1fr}
+.section{padding:48px 0}
+.btn-secondary{margin-left:0}
+}
+@media(max-width:600px){
+.hero-visual{grid-template-columns:1fr}
+.mock-mobile{grid-column:span 1}
+.tracking-grid,.metric-grid{grid-template-columns:1fr}
+.process-flow{flex-wrap:wrap}
+.process-step{min-width:calc(50% - 8px);flex:none}
+.trust-badges{gap:12px}
+.trust-badge{font-size:.85rem}
+.cta-box{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+<section class="section">
+<div class="container">
+<div class="split">
+<div>
+<h1>Webstore Development</h1>
+<p>High-converting, performance-optimized online stores built for speed, SEO dominance, secure payments, and seamless web & mobile commerce experiences.</p>
+<div class="btn-group">
+<a href="#" class="btn btn-primary">Start Your Store</a>
+<a href="#" class="btn btn-secondary">Get Free Consultation</a>
+</div>
+<div class="trust-badges">
+<div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Fast Load Speed</div>
+<div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>SEO-Ready</div>
+<div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Mobile-First UX</div>
+<div class="trust-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Secure Checkout</div>
+</div>
+</div>
+<div class="hero-visual">
+<div class="mock-card">
+<div class="mock-card-header"><span class="mock-dot mock-dot-r"></span><span class="mock-dot mock-dot-y"></span><span class="mock-dot mock-dot-g"></span><span style="margin-left:auto;font-size:12px;color:#888">Desktop Store</span></div>
+<div class="mock-screen">
+<div class="mock-nav"><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+<div class="mock-grid"><div class="mock-product"><div class="mock-product-img"></div><div class="mock-product-line"></div><div class="mock-product-price"></div></div><div class="mock-product"><div class="mock-product-img"></div><div class="mock-product-line"></div><div class="mock-product-price"></div></div><div class="mock-product"><div class="mock-product-img"></div><div class="mock-product-line"></div><div class="mock-product-price"></div></div></div>
+</div>
+</div>
+<div class="mock-card">
+<div class="mock-card-header"><span class="mock-dot mock-dot-r"></span><span class="mock-dot mock-dot-y"></span><span class="mock-dot mock-dot-g"></span><span style="margin-left:auto;font-size:12px;color:#888">Mobile Store</span></div>
+<div class="mock-screen">
+<div style="display:flex;flex-direction:column;gap:8px"><div class="mock-product" style="display:flex;gap:8px;align-items:center"><div class="mock-product-img" style="width:40px;height:40px;margin:0"></div><div style="flex:1"><div class="mock-product-line"></div><div class="mock-product-price"></div></div></div><div class="mock-product" style="display:flex;gap:8px;align-items:center"><div class="mock-product-img" style="width:40px;height:40px;margin:0"></div><div style="flex:1"><div class="mock-product-line"></div><div class="mock-product-price"></div></div></div></div>
+</div>
+</div>
+<div class="mock-card mock-mobile">
+<div class="mock-card-header"><span class="mock-dot mock-dot-r"></span><span class="mock-dot mock-dot-y"></span><span class="mock-dot mock-dot-g"></span><span style="margin-left:auto;font-size:12px;color:#888">Android & iOS Apps</span></div>
+<div class="mock-screen">
+<div class="mock-mobile-nav"><div class="mock-mobile-nav-item"></div><div class="mock-mobile-nav-item"></div><div class="mock-mobile-nav-item"></div></div>
+<div class="mock-mobile-content">
+<div class="mock-nav"><div class="mock-nav-item"></div><div class="mock-nav-item"></div></div>
+<div style="display:flex;gap:8px"><div class="mock-product" style="flex:1"><div class="mock-product-img"></div><div class="mock-product-line"></div><div class="mock-product-price"></div></div><div class="mock-product" style="flex:1"><div class="mock-product-img"></div><div class="mock-product-line"></div><div class="mock-product-price"></div></div></div>
+<div class="mock-app-icons"><div class="mock-app-icon mock-app-android">A</div><div class="mock-app-icon mock-app-ios">i</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-alt">
+<div class="container">
+<h2 class="text-center mb-48">What We Build</h2>
+<div class="service-grid">
+<div class="service-col">
+<h2>Webstore Development</h2>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+<div class="service-content"><h3>WordPress & WooCommerce</h3><p>Flexible, scalable stores with full customization control</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9ZM3 9l2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.79 1.1L21 9"/></svg></div>
+<div class="service-content"><h3>Shopify Development</h3><p>Quick-launch stores with robust hosting included</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+<div class="service-content"><h3>Custom Storefronts</h3><p>Unique designs tailored to your brand identity</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+<div class="service-content"><h3>SEO-Optimized Architecture</h3><p>Built for Google rankings from day one</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg></div>
+<div class="service-content"><h3>High-Performance Hosting</h3><p>Blazing fast servers with 99.9% uptime</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+<div class="service-content"><h3>Multi-Channel Integrations</h3><p>Connect marketplaces, social, and more</p></div>
+</div>
+</div>
+<div class="service-col">
+<h2>Mobile App Development</h2>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+<div class="service-content"><h3>Android eCommerce Apps</h3><p>Native Play Store apps for maximum reach</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+<div class="service-content"><h3>iOS eCommerce Apps</h3><p>Premium App Store presence for Apple users</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 1-9 9m9-9a9 9 0 0 0-9-9m9 9H3m9 9a9 9 0 0 1-9-9m9 9c1.66 0 3-4 3-9s-1.34-9-3-9m0 18c-1.66 0-3-4-3-9s1.34-9 3-9m-9 9a9 9 0 0 1 9-9"/></svg></div>
+<div class="service-content"><h3>Web-to-App Conversion</h3><p>Transform your store into a mobile app</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+<div class="service-content"><h3>App Checkout & Login</h3><p>Secure, frictionless mobile transactions</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+<div class="service-content"><h3>Push Notifications</h3><p>Re-engage customers with timely alerts</p></div>
+</div>
+<div class="service-item">
+<div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+<div class="service-content"><h3>Secure API Integrations</h3><p>Encrypted data sync with your backend</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="text-center mb-48">Google & Tracking Ecosystem</h2>
+<div class="split">
+<div>
+<div class="google-list">
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><span>Google Search Console</span></div>
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"/><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.79 1.1L21 9"/></svg><span>Google Merchant Center</span></div>
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg><span>Google Analytics (GA4)</span></div>
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg><span>Google Tag Manager</span></div>
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span>Google Ads (Search, Shopping, Remarketing)</span></div>
+<div class="google-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a573" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>Google My Business</span></div>
+</div>
+</div>
+<div>
+<div class="tracking-grid">
+<div class="tracking-card"><h4>Accurate Conversion Tracking</h4><p>Every sale, lead, and action measured precisely</p></div>
+<div class="tracking-card"><h4>Funnel & Behavior Analysis</h4><p>Understand how visitors navigate your store</p></div>
+<div class="tracking-card"><h4>ROAS & Attribution</h4><p>Know exactly which ads drive revenue</p></div>
+<div class="tracking-card"><h4>Growth Insights</h4><p>Data-driven decisions for scaling success</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-alt">
+<div class="container">
+<h2 class="text-center mb-48">Payments & Automation</h2>
+<div class="payment-grid">
+<div>
+<h3 style="margin-bottom:20px;font-size:1.3rem">Payment Gateways</h3>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div><span>Razorpay</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div><span>Stripe</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div><span>PayPal</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 10h22"/></svg></div><span>UPI & Net Banking</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><span>Cash on Delivery</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><span>International Payments</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div><span>Subscriptions & Recurring Billing</span></div>
+</div>
+<div>
+<h3 style="margin-bottom:20px;font-size:1.3rem">Automation & Systems</h3>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><span>CRM Integration</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><span>Email & WhatsApp Automation</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg></div><span>Abandoned Cart Recovery</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div><span>Inventory Sync</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><span>Tax & Invoice Automation</span></div>
+<div class="payment-item"><div class="payment-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Fraud Prevention</span></div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="text-center mb-48">Why Our Stores Convert Better</h2>
+<div class="why-grid">
+<div class="why-list">
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Mobile-first UX psychology</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Designed for thumb-friendly navigation</p></div></div>
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Sub-second load optimization</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Every millisecond counts for conversions</p></div></div>
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>SEO-clean technical structure</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Built for search engine visibility</p></div></div>
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>CRO-tested layouts</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Proven designs that drive action</p></div></div>
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Frictionless checkout</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Minimize steps, maximize completions</p></div></div>
+<div class="why-item"><div class="why-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Scalable architecture</strong><p style="font-size:.9rem;color:#6a6a7a;margin-top:4px">Grow from 10 to 10,000 orders seamlessly</p></div></div>
+</div>
+<div>
+<div class="metric-grid">
+<div class="metric-card"><h4>3x Faster</h4><p>Load Speed vs Industry Avg</p></div>
+<div class="metric-card"><h4>40% Higher</h4><p>Conversion Rate</p></div>
+<div class="metric-card"><h4>25% Lower</h4><p>Cart Abandonment</p></div>
+<div class="metric-card"><h4>2x Better</h4><p>Search Visibility</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section section-alt">
+<div class="container">
+<h2 class="text-center mb-48">Technology Stack</h2>
+<div class="tech-badges">
+<span class="tech-badge">WordPress</span>
+<span class="tech-badge">Shopify</span>
+<span class="tech-badge">WooCommerce</span>
+<span class="tech-badge">Android</span>
+<span class="tech-badge">iOS</span>
+<span class="tech-badge">REST APIs</span>
+<span class="tech-badge">Payment Gateways</span>
+<span class="tech-badge">Google Analytics</span>
+<span class="tech-badge">GTM</span>
+<span class="tech-badge">Merchant Center</span>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<h2 class="text-center mb-48">Build Process</h2>
+<div class="process-flow">
+<div class="process-step"><div class="process-num">1</div><h4>Strategy & UX Planning</h4></div>
+<div class="process-step"><div class="process-num">2</div><h4>Store & App Architecture</h4></div>
+<div class="process-step"><div class="process-num">3</div><h4>Design & Development</h4></div>
+<div class="process-step"><div class="process-num">4</div><h4>SEO & Performance Optimization</h4></div>
+<div class="process-step"><div class="process-num">5</div><h4>Tracking & Payment Setup</h4></div>
+<div class="process-step"><div class="process-num">6</div><h4>Testing, Launch & Scale</h4></div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container">
+<div class="cta-box">
+<div class="split">
+<div>
+<h2>Build a Store That Converts, Scales & Sells 24/7</h2>
+<p>Ready to launch your high-performance eCommerce store? Let's make it happen.</p>
+</div>
+<div class="btn-group" style="justify-content:flex-end">
+<a href="#" class="btn btn-primary">Launch My Webstore</a>
+<a href="#" class="btn btn-secondary">Talk to an Expert</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</body>
+</html>
